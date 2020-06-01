@@ -6,8 +6,8 @@ class TitleValidator < ActiveModel::Validator
          "Top",
          "Guess"
        ]
-       
-      unless record.title && clickbait.any?{|c| record.title.include?(c)}
+
+      if record.title && !clickbait.any?{|c| record.title.include?(c)}
          record.errors[:title] << "Not clickbaity enough"
       end
    end
